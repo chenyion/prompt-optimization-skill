@@ -1,0 +1,28 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "scripts"))
+
+from main import run_prompt_optimization
+
+def test_full_pipeline():
+    """测试完整的分析→优化→测试→报告流程"""
+    # 测试输入
+    original_prompt = "写个 Python 函数，处理数据"
+    scenario = "代码生成"
+    test_cases = [
+        "写个函数计算列表平均值",
+        "写个函数去重并排序"
+    ]
+
+    # 执行流程
+    result = run_prompt_optimization(original_prompt, scenario, test_cases)
+
+    # 验证输出
+    assert "best_prompt" in result["data"]
+    assert len(result["data"]["optimized_prompts"]) >= 3
+    assert "markdown" in result
+    print("✅ 全流程测试通过！")
+    print("最优 Prompt:", result["data"]["best_prompt"])
+
+if __name__ == "__main__":
+    test_full_pipeline()
