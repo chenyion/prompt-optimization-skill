@@ -1,0 +1,5 @@
+{
+  "accuracy_weight": 0.5,
+  "relevance_weight": 0.3,
+  "stability_weight": 0.2
+}
